@@ -9,32 +9,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 50%, #FFB3B3 100%);
-            --secondary-gradient: linear-gradient(135deg, #118AB2 0%, #06D6A0 100%);
-            --accent-gradient: linear-gradient(135deg, #FFD166 0%, #FFE066 100%);
-            --dark-gradient: linear-gradient(135deg, #073B4C 0%, #118AB2 100%);
-            --glass-bg: rgba(255, 255, 255, 0.25);
-            --glass-border: rgba(255, 255, 255, 0.18);
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            min-height: 100vh;
-        }
-
-        .font-display {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .chart-container {
@@ -45,1372 +23,218 @@
             margin-right: auto;
             height: 350px;
             max-height: 450px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid var(--glass-border);
-            padding: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
-        .chart-container-enhanced {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            height: 400px;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            border: 2px solid rgba(255, 107, 107, 0.2);
-            padding: 30px;
-            box-shadow:
-                0 20px 40px rgba(255, 107, 107, 0.15),
-                0 8px 16px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .chart-container-enhanced:hover {
-            transform: translateY(-4px);
-            box-shadow:
-                0 32px 64px rgba(255, 107, 107, 0.25),
-                0 16px 32px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
-        }
-
-        /* Адаптивні стилі для всіх розмірів екранів */
-
-        /* Мобільні пристрої (до 640px) */
-        @media (max-width: 639px) {
-            .section-title {
-                font-size: 2rem;
-                margin-bottom: 1rem;
-            }
-
-            .chart-container-enhanced {
-                height: 300px;
-                padding: 16px;
-            }
-
-            .trends-list li {
-                padding: 12px 16px;
-                margin-bottom: 12px;
-            }
-
-            .trends-list li .trend-title {
-                gap: 8px;
-                margin-bottom: 8px;
-                padding-bottom: 8px;
-            }
-
-            .trends-list li .color-indicator {
-                width: 12px;
-                height: 12px;
-            }
-
-            .trends-list li .trend-description {
-                margin-left: 20px;
-                padding-left: 12px;
-                font-size: 0.9rem;
-            }
-
-            .glass-card {
-                padding: 16px;
-            }
-
-            .interactive-card {
-                padding: 16px;
-            }
-        }
-
-        /* Планшети (640px - 1023px) */
-        @media (min-width: 640px) and (max-width: 1023px) {
-            .section-title {
-                font-size: 2.5rem;
-                margin-bottom: 1.25rem;
-            }
-
-            .chart-container-enhanced {
-                height: 350px;
-                padding: 20px;
-            }
-
-            .trends-list li {
-                padding: 16px 20px;
-                margin-bottom: 16px;
-            }
-
-            .trends-list li .trend-title {
-                gap: 10px;
-                margin-bottom: 10px;
-                padding-bottom: 10px;
-            }
-
-            .trends-list li .color-indicator {
-                width: 14px;
-                height: 14px;
-            }
-
-            .trends-list li .trend-description {
-                margin-left: 24px;
-                padding-left: 14px;
-            }
-        }
-
-        /* Десктопи (1024px - 1279px) */
-        @media (min-width: 1024px) and (max-width: 1279px) {
-            .section-title {
-                font-size: 2.75rem;
-                margin-bottom: 1.375rem;
-            }
-
-            .chart-container-enhanced {
-                height: 400px;
-                padding: 24px;
-            }
-
-            .trends-list li {
-                padding: 18px 22px;
-                margin-bottom: 18px;
-            }
-
-            .trends-list li .trend-title {
-                gap: 12px;
-                margin-bottom: 12px;
-                padding-bottom: 12px;
-            }
-
-            .trends-list li .color-indicator {
-                width: 16px;
-                height: 16px;
-            }
-
-            .trends-list li .trend-description {
-                margin-left: 28px;
-                padding-left: 16px;
-            }
-        }
-
-        /* Великі десктопи (1280px+) */
-        @media (min-width: 1280px) {
-            .section-title {
-                font-size: 3rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .chart-container-enhanced {
-                height: 450px;
-                padding: 30px;
-            }
-
-            .trends-list li {
-                padding: 20px 24px;
-                margin-bottom: 20px;
-            }
-
-            .trends-list li .trend-title {
-                gap: 12px;
-                margin-bottom: 12px;
-                padding-bottom: 12px;
-            }
-
-            .trends-list li .color-indicator {
-                width: 16px;
-                height: 16px;
-            }
-
-            .trends-list li .trend-description {
-                margin-left: 28px;
-                padding-left: 16px;
-            }
-        }
-
-        /* Адаптивні стилі для карток продуктів */
-        @media (max-width: 639px) {
-            .grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-3.xl\\:grid-cols-5 {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .interactive-card {
-                padding: 12px;
-            }
-
-            .interactive-card h4 {
-                font-size: 1.125rem;
-            }
-        }
-
-        @media (min-width: 640px) and (max-width: 1023px) {
-            .grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-3.xl\\:grid-cols-5 {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-        }
-
-        @media (min-width: 1024px) and (max-width: 1279px) {
-            .grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-3.xl\\:grid-cols-5 {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 24px;
-            }
-        }
-
-        @media (min-width: 1280px) {
-            .grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-3.xl\\:grid-cols-5 {
-                grid-template-columns: repeat(5, 1fr);
-                gap: 24px;
-            }
-        }
-
-        /* Адаптивні стилі для секції аудиту */
-        @media (max-width: 767px) {
-
-            .audit-card-positive,
-            .audit-card-warning,
-            .audit-card-negative {
-                border-left-width: 4px;
-                padding: 16px;
-            }
-
-            .audit-positive,
-            .audit-warning,
-            .audit-negative {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (min-width: 768px) {
-
-            .audit-card-positive,
-            .audit-card-warning,
-            .audit-card-negative {
-                border-left-width: 6px;
-                padding: 24px;
-            }
-        }
-
-        /* Адаптивні стилі для навігації */
-        @media (max-width: 767px) {
-            .glass-card.sticky.top-0.z-50 {
-                padding: 12px 16px;
-            }
-
-            .glass-card.sticky.top-0.z-50 h1 {
-                font-size: 1.5rem;
-            }
-
-            .glass-card.sticky.top-0.z-50 nav {
-                display: none;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .glass-card.sticky.top-0.z-50 {
-                padding: 24px;
-            }
-
-            .glass-card.sticky.top-0.z-50 h1 {
-                font-size: 2rem;
-            }
-        }
-
-        /* Адаптивні стилі для графіків */
         @media (min-width: 768px) {
             .chart-container {
                 height: 450px;
             }
         }
 
-        /* Додаткові адаптивні стилі для покращення UX */
-
-        /* Мобільні пристрої - покращення читабельності */
-        @media (max-width: 639px) {
-            body {
-                font-size: 14px;
-                line-height: 1.5;
-            }
-
-            .container {
-                padding-left: 16px;
-                padding-right: 16px;
-            }
-
-            .glass-card {
-                margin-bottom: 16px;
-            }
-
-            .trends-list li:hover {
-                transform: translateX(4px);
-            }
-
-            .interactive-card:hover {
-                transform: translateY(-2px) scale(1.01);
-            }
-
-            .trends-list li .trend-title {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-                white-space: normal;
-            }
-
-            .trends-list li .trend-description {
-                margin-left: 0;
-                padding-left: 0;
-                border-left: none;
-                border-top: 2px solid rgba(5, 150, 105, 0.2);
-                padding-top: 8px;
-                margin-top: 8px;
-                text-align: left;
-                text-justify: none;
-                white-space: normal;
-                text-overflow: initial;
-                overflow: visible;
-            }
-        }
-
-        /* Планшети - оптимізація для горизонтального та вертикального режимів */
-        @media (min-width: 640px) and (max-width: 1023px) {
-            .container {
-                padding-left: 24px;
-                padding-right: 24px;
-            }
-
-            .trends-list li:hover {
-                transform: translateX(8px);
-            }
-
-            .interactive-card:hover {
-                transform: translateY(-4px) scale(1.02);
-            }
-        }
-
-        /* Десктопи - повна функціональність */
-        @media (min-width: 1024px) {
-            .container {
-                padding-left: 32px;
-                padding-right: 32px;
-            }
-
-            .trends-list li:hover {
-                transform: translateX(12px);
-            }
-
-            .interactive-card:hover {
-                transform: translateY(-8px) scale(1.02);
-            }
-        }
-
-        /* Адаптивні стилі для таблиць */
-        @media (max-width: 767px) {
-            .overflow-x-auto {
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .min-w-full table {
-                font-size: 0.875rem;
-            }
-
-            .min-w-full th,
-            .min-w-full td {
-                padding: 8px 12px;
-            }
-        }
-
-        /* Адаптивні стилі для footer */
-        @media (max-width: 639px) {
-            .glass-card.mt-16.py-8 {
-                margin-top: 32px;
-                padding: 16px 0;
-            }
-        }
-
-        /* Покращення для високої щільності пікселів */
-        @media (-webkit-min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi) {
-            .color-indicator {
-                border-width: 1px;
-            }
-
-            .trends-list li::before {
-                width: 3px;
-            }
-        }
-
-        /* Темна тема (якщо потрібно в майбутньому) */
-        @media (prefers-color-scheme: dark) {
-            .glass-card {
-                background: rgba(30, 30, 30, 0.8);
-                border-color: rgba(255, 255, 255, 0.1);
-            }
-
-            .trends-list li {
-                background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(40, 40, 40, 0.7));
-                border-color: rgba(255, 107, 107, 0.2);
-            }
-        }
-
-        /* Покращення доступності */
-        @media (prefers-reduced-motion: reduce) {
-
-            .interactive-card,
-            .trends-list li,
-            .hover-lift {
-                transition: none;
-            }
-
-            .interactive-card:hover,
-            .trends-list li:hover,
-            .hover-lift:hover {
-                transform: none;
-            }
-        }
-
-        /* Покращення для принтеру */
-        @media print {
-            .glass-card {
-                background: white;
-                box-shadow: none;
-                border: 1px solid #ccc;
-            }
-
-            .interactive-card:hover {
-                transform: none;
-            }
-
-            .trends-list li:hover {
-                transform: none;
-            }
-        }
-
-        /* Стилі для кнопки перемикання теми */
-        .theme-toggle-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            padding: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: #6B7280;
-        }
-
-        .theme-toggle-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: #059669;
-            transform: scale(1.05);
-        }
-
-        /* Темна тема */
-        .dark-theme {
-            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-            color: #FFFFFF;
-        }
-
-        .dark-theme .glass-card {
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid rgba(71, 85, 105, 0.4);
-            color: #FFFFFF;
-        }
-
-        .dark-theme .glass-card:hover {
-            background: rgba(30, 41, 59, 0.9);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .dark-theme .section-title {
-            color: #FFFFFF;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .dark-theme .trends-list li {
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(71, 85, 105, 0.5);
-            color: #FFFFFF;
-            min-height: 80px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .dark-theme .trends-list li:hover {
-            background: rgba(30, 41, 59, 0.95);
-            border-color: rgba(16, 185, 129, 0.5);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        }
-
-        .dark-theme .trends-list li .trend-description {
-            color: #F1F5F9;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: none;
-            font-weight: 500;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
-
-        .dark-theme .trends-list li .trend-title {
-            white-space: nowrap;
-            flex-wrap: nowrap;
-        }
-
-        .dark-theme .bright-pink {
-            color: #34D399 !important;
-            font-weight: 700;
-        }
-
-        .dark-theme .card-title {
-            color: #FFFFFF;
-            font-weight: 700;
-        }
-
-        .dark-theme .card-subtitle {
-            color: #F1F5F9;
-            font-weight: 600;
-        }
-
-        .dark-theme .highlight-text {
-            background: linear-gradient(135deg, #10B981 0%, #34D399 50%, #6EE7B7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .dark-theme .interactive-card {
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid rgba(71, 85, 105, 0.4);
-            color: #FFFFFF;
-        }
-
-        .dark-theme .interactive-card:hover {
-            background: rgba(30, 41, 59, 0.95);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-            border-color: rgba(16, 185, 129, 0.3);
-        }
-
-        .dark-theme .interactive-card h4 {
-            color: #FFFFFF;
-            font-weight: 700;
-        }
-
-        .dark-theme .interactive-card p {
-            color: #F1F5F9;
-        }
-
-        .dark-theme .brand-analog {
-            color: #CBD5E1;
-            font-weight: 600;
-        }
-
-        .dark-theme .audit-card-positive {
-            background: linear-gradient(145deg, rgba(5, 150, 105, 0.1), rgba(30, 41, 59, 0.8));
-            border-left: 6px solid #10B981;
-        }
-
-        .dark-theme .audit-card-warning {
-            background: linear-gradient(145deg, rgba(217, 119, 6, 0.1), rgba(30, 41, 59, 0.8));
-            border-left: 6px solid #F59E0B;
-        }
-
-        .dark-theme .audit-card-negative {
-            background: linear-gradient(145deg, rgba(220, 38, 38, 0.1), rgba(30, 41, 59, 0.8));
-            border-left: 6px solid #EF4444;
-        }
-
-        .dark-theme .audit-positive {
-            color: #10B981 !important;
-        }
-
-        .dark-theme .audit-warning {
-            color: #F59E0B !important;
-        }
-
-        .dark-theme .audit-negative {
-            color: #EF4444 !important;
-        }
-
-        .dark-theme .gradient-text {
-            background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .dark-theme .theme-toggle-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #E2E8F0;
-        }
-
-        .dark-theme .theme-toggle-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: #10B981;
-        }
-
-        /* Покращення контрастності для всіх секцій */
-        .dark-theme p {
-            color: #F1F5F9 !important;
-            font-weight: 500;
-        }
-
-        .dark-theme h1,
-        .dark-theme h2,
-        .dark-theme h3,
-        .dark-theme h4,
-        .dark-theme h5,
-        .dark-theme h6 {
-            color: #FFFFFF !important;
-            font-weight: 700;
-        }
-
-        .dark-theme .text-gray-600 {
-            color: #CBD5E1 !important;
-        }
-
-        .dark-theme .text-gray-700 {
-            color: #F1F5F9 !important;
-        }
-
-        .dark-theme .text-gray-800 {
-            color: #FFFFFF !important;
-        }
-
-        .dark-theme .text-gray-900 {
-            color: #FFFFFF !important;
-        }
-
-        .dark-theme .font-light {
-            font-weight: 500 !important;
-        }
-
-        .dark-theme .font-medium {
-            font-weight: 600 !important;
-        }
-
-        .dark-theme .font-semibold {
-            font-weight: 700 !important;
-        }
-
-        .dark-theme .font-bold {
-            font-weight: 800 !important;
-        }
-
-        .dark-theme .leading-relaxed {
-            line-height: 1.7;
-        }
-
-        .dark-theme .leading-tight {
-            line-height: 1.3;
-        }
-
-        /* Покращення контрастності для таблиць */
-        .dark-theme table {
-            color: #F1F5F9;
-        }
-
-        .dark-theme th {
-            color: #FFFFFF !important;
-            font-weight: 700;
-        }
-
-        .dark-theme td {
-            color: #F1F5F9 !important;
-            font-weight: 500;
-        }
-
-        /* Покращення контрастності для footer */
-        .dark-theme footer {
-            color: #CBD5E1 !important;
-        }
-
-        .dark-theme footer p {
-            color: #CBD5E1 !important;
-            font-weight: 500;
-        }
-
-        /* Покращення контрастності для навігації */
-        .dark-theme nav a {
-            color: #F1F5F9 !important;
-            font-weight: 600;
-        }
-
-        .dark-theme nav a:hover {
-            color: #10B981 !important;
-        }
-
-        /* Покращення контрастності для списків */
-        .dark-theme ul,
-        .dark-theme ol {
-            color: #F1F5F9;
-        }
-
-        .dark-theme li {
-            color: #F1F5F9;
-            font-weight: 500;
-        }
-
-        /* Покращення контрастності для кнопок */
-        .dark-theme button {
-            color: #F1F5F9;
-            font-weight: 600;
-        }
-
-        /* Покращення контрастності для span елементів */
-        .dark-theme span {
-            color: #F1F5F9;
-        }
-
         .card-glow-top {
-            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-            box-shadow:
-                0 20px 40px rgba(255, 107, 107, 0.15),
-                0 8px 16px rgba(255, 107, 107, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(255, 107, 107, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .card-glow-top:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow:
-                0 32px 64px rgba(255, 107, 107, 0.25),
-                0 16px 32px rgba(255, 107, 107, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5), 0 0 8px rgba(255, 107, 107, 0.4);
+            border-color: #FF6B6B;
         }
 
         .brand-analog {
             font-size: 0.85rem;
-            color: #64748b;
-            font-weight: 500;
-            letter-spacing: 0.025em;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(229, 231, 235, 0.5);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: all 0.2s ease;
-        }
-
-        .glass-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transform: translateY(-1px);
-        }
-
-        .gradient-text {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .gradient-bg-primary {
-            background: var(--primary-gradient);
-        }
-
-        .gradient-bg-secondary {
-            background: var(--secondary-gradient);
-        }
-
-        .gradient-bg-accent {
-            background: var(--accent-gradient);
-        }
-
-        .gradient-bg-dark {
-            background: var(--dark-gradient);
-        }
-
-        .animate-fade-in {
-            animation: fadeIn 0.6s ease-out forwards;
-        }
-
-        .animate-slide-up {
-            animation: slideUp 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hover-lift {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .hover-lift:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .trends-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .trends-list li {
-            margin-bottom: 16px;
-            padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
-            border: 1px solid rgba(229, 231, 235, 0.6);
-            transition: all 0.2s ease;
-            position: relative;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-            min-height: 80px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .trends-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, #059669 0%, #10B981 100%);
-            border-radius: 0 2px 2px 0;
-        }
-
-        .trends-list li:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-color: rgba(5, 150, 105, 0.3);
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .trends-list li span {
-            font-weight: 600;
-            font-size: 1rem;
-            display: block;
-            line-height: 1.5;
-        }
-
-        .trends-list li span:first-child {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid rgba(255, 107, 107, 0.1);
-        }
-
-        .trends-list li span:last-child {
-            color: #4b5563;
-            font-weight: 500;
-            line-height: 1.6;
-            margin-left: 8px;
-        }
-
-        .trends-list li .trend-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid rgba(255, 107, 107, 0.1);
-            white-space: nowrap;
-            flex-wrap: nowrap;
-        }
-
-        .trends-list li .color-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            flex-shrink: 0;
-        }
-
-        .trends-list li .trend-description {
-            color: #4b5563;
-            font-weight: 500;
-            line-height: 1.6;
-            margin-left: 24px;
-            padding-left: 12px;
-            border-left: 2px solid rgba(5, 150, 105, 0.2);
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: none;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
-
-        .bright-pink {
-            color: #059669 !important;
-            font-weight: 600;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1F2937;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-subtitle {
-            font-size: 0.875rem;
-            color: #6B7280;
-            font-weight: 500;
-        }
-
-        .interactive-card {
-            transition: all 0.2s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .interactive-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .pulse-animation {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        .highlight-text {
-            background: linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.025em;
-        }
-
-        /* Альтернативні стилі для виділення */
-        .highlight-text-alt1 {
-            color: #1E40AF;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            text-decoration: underline;
-            text-decoration-color: #3B82F6;
-            text-underline-offset: 3px;
-        }
-
-        .highlight-text-alt2 {
-            color: #7C3AED;
-            font-weight: 700;
-            font-family: 'Inter', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            background: linear-gradient(90deg, #7C3AED 0%, #A855F7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .highlight-text-alt3 {
-            color: #DC2626;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            position: relative;
-        }
-
-        .highlight-text-alt3::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #DC2626 0%, #EF4444 100%);
-            border-radius: 1px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: #1F2937;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #059669 0%, #10B981 100%);
-            border-radius: 2px;
-        }
-
-        .audit-positive {
-            color: #059669 !important;
-            font-weight: 700;
-        }
-
-        .audit-warning {
-            color: #D97706 !important;
-            font-weight: 700;
-        }
-
-        .audit-negative {
-            color: #DC2626 !important;
-            font-weight: 700;
-        }
-
-        .audit-card-positive {
-            border-left: 6px solid #059669;
-            background: linear-gradient(145deg, rgba(5, 150, 105, 0.05), rgba(255, 255, 255, 0.9));
-        }
-
-        .audit-card-warning {
-            border-left: 6px solid #D97706;
-            background: linear-gradient(145deg, rgba(217, 119, 6, 0.05), rgba(255, 255, 255, 0.9));
-        }
-
-        .audit-card-negative {
-            border-left: 6px solid #DC2626;
-            background: linear-gradient(145deg, rgba(220, 38, 38, 0.05), rgba(255, 255, 255, 0.9));
+            color: #71717a;
+            /* Tailwind gray-600 */
         }
     </style>
 </head>
 
-<body class="text-gray-800">
+<body class="bg-gray-50 text-gray-800">
 
-    <header class="glass-card sticky top-0 z-50 animate-fade-in">
-        <div class="container mx-auto px-6 py-6 flex justify-between items-center">
-            <h1 class="text-3xl font-display font-bold gradient-text">Pinky: RoadMap 2025</h1>
-            <div class="flex items-center space-x-6">
-                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Перемкнути тему">
-                    <svg class="sun-icon w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <svg class="moon-icon w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                    </svg>
-                </button>
-                <nav class="hidden md:flex space-x-8 text-sm font-medium">
-                    <a href="#trends"
-                        class="text-gray-600 hover:text-[#FF6B6B] transition-all duration-300 hover:scale-105 relative group">
-                        1. Тренди
-                        <span
-                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#FF6B6B] to-[#FF8E8E] transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#proposals"
-                        class="text-gray-600 hover:text-[#FF6B6B] transition-all duration-300 hover:scale-105 relative group">
-                        2. Асортимент
-                        <span
-                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#FF6B6B] to-[#FF8E8E] transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#sales_projection"
-                        class="text-gray-600 hover:text-[#FF6B6B] transition-all duration-300 hover:scale-105 relative group">
-                        3. Прогноз продажів
-                        <span
-                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#FF6B6B] to-[#FF8E8E] transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#analysis"
-                        class="text-gray-600 hover:text-[#FF6B6B] transition-all duration-300 hover:scale-105 relative group">
-                        4. Аудит
-                        <span
-                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#FF6B6B] to-[#FF8E8E] transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#competitors"
-                        class="text-gray-600 hover:text-[#FF6B6B] transition-all duration-300 hover:scale-105 relative group">
-                        6. Конкуренти
-                        <span
-                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#FF6B6B] to-[#FF8E8E] transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                </nav>
-            </div>
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold" style="color: #FF6B6B;">Pinky: RoadMap 2025</h1>
+            <nav class="hidden md:flex space-x-6 text-sm">
+                <a href="#trends" class="text-gray-600 hover:text-[#FF6B6B] transition">1. Тренди</a>
+                <a href="#proposals" class="text-gray-600 hover:text-[#FF6B6B] transition">2. Асортимент</a>
+                <a href="#sales_projection" class="text-gray-600 hover:text-[#FF6B6B] transition">3. Прогноз
+                    продажів</a>
+                <a href="#analysis" class="text-gray-600 hover:text-[#FF6B6B] transition">4. Аудит</a>
+                <a href="#competitors" class="text-gray-600 hover:text-[#FF6B6B] transition">6. Конкуренти</a>
+            </nav>
+        </div>
     </header>
 
     <main class="container mx-auto px-6 py-12">
 
-        <section class="text-center mb-20 animate-slide-up">
-            <h1 class="text-5xl md:text-6xl font-display font-bold mb-6 gradient-text leading-tight">
-                Стратегічна Дорожня Карта Аксесуарів 2025
-            </h1>
-            <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
-                Візуальний аналіз ринку та план дій для перетворення Pinky на лідера у ніші трендових косметичних
-                аксесуарів.
-            </p>
+        <section class="text-center mb-20">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4" style="color: #073B4C;">Стратегічна Дорожня Карта Аксесуарів
+                2025</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Візуальний аналіз ринку та план дій для перетворення
+                Pinky на лідера у ніші трендових косметичних аксесуарів.</p>
         </section>
 
-        <section id="trends" class="mb-20 animate-fade-in">
-            <h2 class="section-title text-center gradient-text">
-                1. Пульс Ринку: Ключові Тренди та Потенціал
-            </h2>
-            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto text-lg leading-relaxed">
-                Діаграма відображає комерційний потенціал ключових трендових напрямків. Найбільшу вагу мають аксесуари,
-                інтегровані в щоденну рутину догляду (кріо, масаж, гаджети).
-            </p>
+        <section id="trends" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2" style="color: #118AB2;">1. Пульс Ринку: Ключові Тренди та
+                Потенціал</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Діаграма відображає комерційний потенціал
+                ключових трендових напрямків. Найбільшу вагу мають аксесуари, інтегровані в щоденну рутину догляду
+                (кріо, масаж, гаджети).</p>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-                <div class="lg:col-span-1 glass-card rounded-2xl p-8 interactive-card">
-                    <h3 class="text-2xl font-display font-bold mb-6 bright-pink">Комерційний Потенціал Трендів</h3>
-                    <div class="chart-container-enhanced">
+                <div class="lg:col-span-1 bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4" style="color: #073B4C;">Комерційний Потенціал Трендів</h3>
+                    <div class="chart-container" style="height: 300px; max-width: 400px;">
                         <canvas id="trendsChart"></canvas>
                     </div>
                 </div>
-                <div class="lg:col-span-2 glass-card rounded-2xl p-8 interactive-card">
-                    <h3 class="text-2xl font-display font-bold mb-6 bright-pink">Деталізація Ключових Трендів (2025)
-                    </h3>
-                    <ul class="trends-list">
-                        <li>
-                            <div class="trend-title">
-                                <div class="color-indicator" style="background-color: #FF1744;"></div>
-                                <span style="color: #FF1744; font-weight: 700;">Підлаштованість під рутину</span>
-                            </div>
-                            <div class="trend-description">
-                                Аксесуар як частина догляду (гуаша, ролери, <span
-                                    class="highlight-text">айс-ролери</span>).
-                            </div>
-                        </li>
-                        <li>
-                            <div class="trend-title">
-                                <div class="color-indicator" style="background-color: #118AB2;"></div>
-                                <span style="color: #118AB2; font-weight: 700;">Інтеграція гаджетів</span>
-                            </div>
-                            <div class="trend-description">
-                                Активні технології (<span class="highlight-text">електричні щіточки, автоматичні
-                                    очищувачі</span>).
-                            </div>
-                        </li>
-                        <li>
-                            <div class="trend-title">
-                                <div class="color-indicator" style="background-color: #FFD166;"></div>
-                                <span style="color: #FFD166; font-weight: 700;">Еко-матеріали & сталий дизайн</span>
-                            </div>
-                            <div class="trend-description">
-                                Бамбук, перероблені тканини, <span class="highlight-text">багаторазові обгортки</span>.
-                            </div>
-                        </li>
-                        <li>
-                            <div class="trend-title">
-                                <div class="color-indicator" style="background-color: #06D6A0;"></div>
-                                <span style="color: #06D6A0; font-weight: 700;">Текстура та естетика</span>
-                            </div>
-                            <div class="trend-description">
-                                Дизайн, кольори ("димчаті", перлинний), фактура (<span
-                                    class="highlight-text">clean-girl, атлас</span>).
-                            </div>
-                        </li>
-                        <li>
-                            <div class="trend-title">
-                                <div class="color-indicator" style="background-color: #073B4C;"></div>
-                                <span style="color: #073B4C; font-weight: 700;">Міні / дорожні версії</span>
-                            </div>
-                            <div class="trend-description">
-                                Зручність та "консьюмеризм на ходу", <span class="highlight-text">модульні
-                                    тревел-кейси</span>.
-                            </div>
-                        </li>
-                        <li>
-                            <div class="trend-title">
-                                <div class="color-indicator" style="background-color: #118AB2;"></div>
-                                <span style="color: #118AB2; font-weight: 700;">Мультифункціональність</span>
-                            </div>
-                            <div class="trend-description">
-                                Менше окремих предметів, більше користі (<span class="highlight-text">2-в-1 пов'язки,
-                                    органайзери</span>).
-                            </div>
-                        </li>
-                        <li>
-                            <div class="trend-title">
-                                <div class="color-indicator" style="background-color: #FF1744;"></div>
-                                <span style="color: #FF1744; font-weight: 700;">Персоналізація</span>
-                            </div>
-                            <div class="trend-description">
-                                Custom косметички, гравіювання логотипу.
-                            </div>
-                        </li>
+                <div class="lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold mb-4" style="color: #06D6A0;">Деталізація Ключових Трендів (2025)</h3>
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li><span class="font-semibold" style="color: #FF6B6B;">Підлаштованість під рутину:</span>
+                            Аксесуар як частина догляду (гуаша, ролери, **айс-ролери**).</li>
+                        <li><span class="font-semibold" style="color: #118AB2;">Інтеграція гаджетів:</span> Активні
+                            технології (**електричні щіточки, автоматичні очищувачі**).</li>
+                        <li><span class="font-semibold" style="color: #FFD166;">Еко-матеріали & сталий дизайн:</span>
+                            Бамбук, перероблені тканини, **багаторазові обгортки**.</li>
+                        <li><span class="font-semibold" style="color: #06D6A0;">Текстура та естетика:</span> Дизайн,
+                            кольори ("димчаті", перлинний), фактура (**clean-girl, атлас**).</li>
+                        <li><span class="font-semibold" style="color: #073B4C;">Міні / дорожні версії:</span> Зручність
+                            та "консьюмеризм на ходу", **модульні тревел-кейси**.</li>
+                        <li><span class="font-semibold" style="color: #118AB2;">Мультифункціональність:</span> Менше
+                            окремих предметів, більше користі (**2-в-1 пов’язки, органайзери**).</li>
+                        <li><span class="font-semibold" style="color: #FF6B6B;">Персоналізація:</span> Custom
+                            косметички, гравіювання логотипу.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section id="proposals" class="mb-20 animate-fade-in">
-            <h2 class="section-title text-center gradient-text">
-                2. Пропозиції по Асортименту: Майбутні Хіти
-            </h2>
-            <p class="text-center text-gray-600 mb-12 max-w-4xl mx-auto text-lg leading-relaxed">
-                Оновлений <span class="highlight-text">ТОП-5</span> фокусується на закритті прогалин у <span
-                    class="highlight-text">технологіях</span> та <span class="highlight-text">трендовій естетиці</span>,
-                забезпечуючи високий вірусний та комерційний потенціал. Ці позиції мають стати "Новим Ядром"
-                асортименту.
-            </p>
+        <section id="proposals" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2" style="color: #118AB2;">2. Пропозиції по Асортименту:
+                Майбутні Хіти</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-4xl mx-auto">Оновлений **ТОП-5** фокусується на закритті
+                прогалин у **технологіях** та **трендовій естетиці**, забезпечуючи високий вірусний та комерційний
+                потенціал. Ці позиції мають стати "Новим Ядром" асортименту.</p>
 
             <div class="text-center mb-12">
-                <h3 class="text-3xl font-display font-bold gradient-text">
-                    🔥 ОНОВЛЕНИЙ ТОП-5 для першочергового запуску (НОВЕ ЯДРО)
-                </h3>
+                <h3 class="text-2xl font-semibold" style="color: #06D6A0;">🔥 ОНОВЛЕНИЙ ТОП-5 для першочергового запуску
+                    (НОВЕ ЯДРО)</h3>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
                 <!-- ТОП 1: Автоматичний очищувач -->
-                <div class="glass-card rounded-2xl p-6 interactive-card card-glow-top">
-                    <div class="relative overflow-hidden rounded-xl mb-4">
-                        <img src="https://placehold.co/600x400/118AB2/FFFFFF?text=Automatic+Cleaner"
-                            alt="Автоматичний очищувач пензлів"
-                            class="w-full h-36 object-cover shadow-lg transition-transform duration-500 hover:scale-110">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
-                        </div>
-                    </div>
-                    <h4 class="text-xl font-display font-bold mb-2 bright-pink">
+                <div
+                    class="bg-white rounded-lg shadow-lg p-4 border-2 card-glow-top transition-transform transform hover:scale-105">
+                    <img src="https://placehold.co/600x400/118AB2/FFFFFF?text=Automatic+Cleaner"
+                        alt="Автоматичний очищувач пензлів" class="rounded-md mb-3 w-full h-32 object-cover">
+                    <h4 class="text-lg font-bold mb-1">
                         1. Автоматичний очищувач
                     </h4>
-                    <p class="brand-analog mb-3">(Аналог: <span class="highlight-text">StylPro</span>)</p>
-                    <p class="text-gray-600 text-sm leading-relaxed"><span class="highlight-text">Фокус:</span>
-                        Tech/Вірусність. Закриває прогалину в технологіях. Високий потенціал для контенту.</p>
+                    <p class="brand-analog mb-2">(Аналог: **StylPro**)</p>
+                    <p class="text-gray-600 text-sm">**Фокус:** Tech/Вірусність. Закриває прогалину в технологіях.
+                        Високий потенціал для контенту.</p>
                 </div>
 
                 <!-- ТОП 2: Дзеркало з LED-підсвіткою -->
-                <div class="glass-card rounded-2xl p-6 interactive-card card-glow-top">
-                    <div class="relative overflow-hidden rounded-xl mb-4">
-                        <img src="https://placehold.co/600x400/FFD166/073B4C?text=LED+Mirror"
-                            alt="Дзеркало з LED-підсвіткою"
-                            class="w-full h-36 object-cover shadow-lg transition-transform duration-500 hover:scale-110">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
-                        </div>
-                    </div>
-                    <h4 class="text-xl font-display font-bold mb-2 bright-pink">
+                <div
+                    class="bg-white rounded-lg shadow-lg p-4 border-2 card-glow-top transition-transform transform hover:scale-105">
+                    <img src="https://placehold.co/600x400/FFD166/073B4C?text=LED+Mirror"
+                        alt="Дзеркало з LED-підсвіткою" class="rounded-md mb-3 w-full h-32 object-cover">
+                    <h4 class="text-lg font-bold mb-1">
                         2. Дзеркало з LED-підсвіткою
                     </h4>
-                    <p class="brand-analog mb-3">(Аналог: <span class="highlight-text">Riki Loves Riki</span>)</p>
-                    <p class="text-gray-600 text-sm leading-relaxed"><span class="highlight-text">Фокус:</span>
-                        Tech/Контент. Базовий гаджет для якісного макіяжу та створення відео.</p>
+                    <p class="brand-analog mb-2">(Аналог: **Riki Loves Riki**)</p>
+                    <p class="text-gray-600 text-sm">**Фокус:** Tech/Контент. Базовий гаджет для якісного макіяжу та
+                        створення відео.</p>
                 </div>
 
                 <!-- ТОП 3: Clean-Girl Браші -->
-                <div class="glass-card rounded-2xl p-6 interactive-card card-glow-top">
-                    <div class="relative overflow-hidden rounded-xl mb-4">
-                        <img src="https://placehold.co/600x400/06D6A0/FFFFFF?text=Clean+Girl+Brush+Set"
-                            alt="Пензлі для Clean-Girl Естетики"
-                            class="w-full h-36 object-cover shadow-lg transition-transform duration-500 hover:scale-110">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
-                        </div>
-                    </div>
-                    <h4 class="text-xl font-display font-bold mb-2 bright-pink">
+                <div
+                    class="bg-white rounded-lg shadow-lg p-4 border-2 card-glow-top transition-transform transform hover:scale-105">
+                    <img src="https://placehold.co/600x400/06D6A0/FFFFFF?text=Clean+Girl+Brush+Set"
+                        alt="Пензлі для Clean-Girl Естетики" class="rounded-md mb-3 w-full h-32 object-cover">
+                    <h4 class="text-lg font-bold mb-1">
                         3. Пензлі для Clean-Girl
                     </h4>
-                    <p class="brand-analog mb-3">(Аналог: <span class="highlight-text">Sigma/Morphe</span>)</p>
-                    <p class="text-gray-600 text-sm leading-relaxed"><span class="highlight-text">Фокус:</span>
-                        Естетика/Тренд. Якісна, мінімалістична база, що відповідає сучасному тренду.</p>
+                    <p class="brand-analog mb-2">(Аналог: **Sigma/Morphe**)</p>
+                    <p class="text-gray-600 text-sm">**Фокус:** Естетика/Тренд. Якісна, мінімалістична база, що
+                        відповідає сучасному тренду.</p>
                 </div>
 
                 <!-- ТОП 4: Кріороллер -->
-                <div class="glass-card rounded-2xl p-6 card-glow-top hover-lift">
+                <div
+                    class="bg-white rounded-lg shadow-lg p-4 border-2 card-glow-top transition-transform transform hover:scale-105">
                     <img src="https://placehold.co/600x400/FF6B6B/FFFFFF?text=Cryo+Ice+Roller"
-                        alt="Кріороллер для обличчя" class="rounded-xl mb-4 w-full h-36 object-cover shadow-lg">
-                    <h4 class="text-xl font-display font-bold mb-2 gradient-text">
+                        alt="Кріороллер для обличчя" class="rounded-md mb-3 w-full h-32 object-cover">
+                    <h4 class="text-lg font-bold mb-1">
                         4. Кріороллер (Ice Roller)
                     </h4>
-                    <p class="brand-analog mb-3">(Аналог: <span class="highlight-text">Nurse Jamie</span>)</p>
-                    <p class="text-gray-600 text-sm leading-relaxed"><span class="highlight-text">Фокус:</span> Рутина
-                        Догляду. Швидкий засіб для зняття набряків, обов'язковий у скін-рутині.</p>
+                    <p class="brand-analog mb-2">(Аналог: **Nurse Jamie**)</p>
+                    <p class="text-gray-600 text-sm">**Фокус:** Рутина Догляду. Швидкий засіб для зняття набряків,
+                        обов'язковий у скін-рутині.</p>
                 </div>
 
                 <!-- ТОП 5: Heatless Curls -->
-                <div class="glass-card rounded-2xl p-6 card-glow-top hover-lift">
+                <div
+                    class="bg-white rounded-lg shadow-lg p-4 border-2 card-glow-top transition-transform transform hover:scale-105">
                     <img src="https://placehold.co/600x400/073B4C/FFFFFF?text=Heatless+Curls" alt="Набір Heatless Curls"
-                        class="rounded-xl mb-4 w-full h-36 object-cover shadow-lg">
-                    <h4 class="text-xl font-display font-bold mb-2 gradient-text">
+                        class="rounded-md mb-3 w-full h-32 object-cover">
+                    <h4 class="text-lg font-bold mb-1">
                         5. Набір "Heatless Curls"
                     </h4>
-                    <p class="brand-analog mb-3">(Аналог: <span class="highlight-text">Kitsch</span>)</p>
-                    <p class="text-gray-600 text-sm leading-relaxed"><span class="highlight-text">Фокус:</span>
-                        Догляд/Естетика. Дбайливе ставлення до волосся, висока "інстаграмність" результату.</p>
+                    <p class="brand-analog mb-2">(Аналог: **Kitsch**)</p>
+                    <p class="text-gray-600 text-sm">**Фокус:** Догляд/Естетика. Дбайливе ставлення до волосся, висока
+                        "інстаграмність" результату.</p>
                 </div>
             </div>
 
-            <div class="mt-12 glass-card rounded-2xl p-8 hover-lift">
-                <h3 class="text-3xl font-display font-bold mb-6 gradient-text">Додаткові Стратегічні Позиції (Наступна
+            <div class="mt-12 p-6 bg-white rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4" style="color: #073B4C;">Додаткові Стратегічні Позиції (Наступна
                     Хвиля)</h3>
-                <div class="overflow-x-auto rounded-xl">
+                <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="gradient-bg-secondary">
+                        <thead class="bg-gray-50">
                             <tr>
-                                <th class="px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Товар</th>
-                                <th class="px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Популярний Аналог / Бренд</th>
-                                <th class="px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider">
+                                <th
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Аргумент для Pinky</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white/50 backdrop-blur-sm divide-y divide-gray-200 text-sm">
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm">
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Силіконовий Скребок
                                     Гуаша</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-gray-700"><span
-                                        class="highlight-text">Herbivore</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-700">**Herbivore**</td>
                                 <td class="px-6 py-4 text-gray-700">Високий потенціал, перенесено з ТОП-5.
                                     Мультифункціональність та гігієнічність (силікон).</td>
                             </tr>
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Модульний Тревел-кейс
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-gray-700"><span
-                                        class="highlight-text">Calpak</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-700">**Calpak**</td>
                                 <td class="px-6 py-4 text-gray-700">Закриття прогалини "Дорожні набори". Практичне,
                                     організоване рішення для подорожей.</td>
                             </tr>
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Силіконовий органайзер
                                     для косметики</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-gray-700"><span class="highlight-text">Pinky
-                                        (Власний Бренд)</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-700">**Pinky (Власний Бренд)**</td>
                                 <td class="px-6 py-4 text-gray-700">Мультифункціональність та брендування. Ідеально
                                     підходить для власної брендованої лінії.</td>
                             </tr>
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Бамбуковий міні-набір
                                     пензлів</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-gray-700"><span
-                                        class="highlight-text">EcoTools</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-700">**EcoTools**</td>
                                 <td class="px-6 py-4 text-gray-700">Екофрендлі імідж, міні-формат — тренд для подорожей.
                                 </td>
                             </tr>
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">Vintage Cosmetic
                                     Headband (Атлас/Кокетка)</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-gray-700"><span
-                                        class="highlight-text">Slip</span></td>
+                                <td class="px-6 py-4 whitespace-nowrap text-gray-700">**Slip**</td>
                                 <td class="px-6 py-4 text-gray-700">Текстура та естетика. Ретро-стиль чи "кокетний"
                                     дизайн.</td>
                             </tr>
@@ -1421,115 +245,92 @@
 
         </section>
 
-        <section id="sales_projection" class="mb-20 animate-fade-in">
-            <h2 class="section-title text-center gradient-text">
-                3. Прогноз Продажів ТОП-5 (Q1–Q4 2025)
-            </h2>
-            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto text-lg leading-relaxed">
-                Лінійний графік показує очікуване зростання доходів для <span class="highlight-text">трьох головних
-                    драйверів</span> з ТОП-5.
-                Технологічні рішення та естетика задають найвищий темп.
-            </p>
-            <div class="glass-card rounded-2xl p-8 hover-lift">
+        <section id="sales_projection" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2" style="color: #073B4C;">3. Прогноз Продажів ТОП-5 (Q1–Q4
+                2025)</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Лінійний графік показує очікуване зростання
+                доходів для **трьох головних драйверів** з ТОП-5. Технологічні рішення та естетика задають найвищий
+                темп.</p>
+            <div class="bg-white rounded-lg shadow-lg p-6">
                 <div class="chart-container w-full max-w-4xl mx-auto" style="height: 400px; max-height: 500px;">
                     <canvas id="salesProjectionChart"></canvas>
                 </div>
             </div>
         </section>
 
-        <section id="analysis" class="mb-20 animate-fade-in">
-            <h2 class="section-title text-center gradient-text">
-                4. Аудит Поточної Категорії Pinky
+        <section id="analysis" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2" style="color: #118AB2;">4. Аудит Поточної Категорії Pinky
             </h2>
-            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto text-lg leading-relaxed">
-                Аналіз поточного асортименту. Pinky має міцну базу (косметички), але втрачає можливості у трендових,
-                естетично привабливих та технологічних сегментах.
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Аналіз поточного асортименту. Pinky має міцну
+                базу (косметички), але втрачає можливості у трендових, естетично привабливих та технологічних сегментах.
             </p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="glass-card rounded-2xl p-8 hover-lift audit-card-positive">
-                    <div class="mb-6 text-3xl font-display font-bold audit-positive">✅ Сильні Сторони</div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="mb-4 text-3xl font-bold" style="color: #06D6A0;">✅ Сильні Сторони</div>
                     <ul class="text-left list-disc list-inside text-gray-700 space-y-2">
-                        <li>Широкий вибір <span class="highlight-text">Косметичок</span> (сильна сторона).</li>
-                        <li>Присутні <span class="highlight-text">Палітрочки</span> для змішування (актуальний
-                            інструмент).</li>
+                        <li>Широкий вибір **Косметичок** (сильна сторона).</li>
+                        <li>Присутні **Палітрочки** для змішування (актуальний інструмент).</li>
                         <li>Базові позиції (пензлі, спонжі) вже включені.</li>
-                        <li>Присутність <span class="highlight-text">пов'язок</span> (корисний аксесуар для рутин
-                            догляду).</li>
+                        <li>Присутність **пов’язок** (корисний аксесуар для рутин догляду).</li>
                     </ul>
                 </div>
-                <div class="glass-card rounded-2xl p-8 hover-lift audit-card-warning">
-                    <div class="mb-6 text-3xl font-display font-bold audit-warning">⚠️ Неактуальне / Слабка Естетика
-                    </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="mb-4 text-3xl font-bold" style="color: #FFD166;">⚠️ Неактуальне / Слабка Естетика</div>
                     <ul class="text-left list-disc list-inside text-gray-700 space-y-2">
-                        <li>Базові моделі <span class="highlight-text">без естетики</span> (стандартні спонжі/пензлики).
-                        </li>
-                        <li>Відсутність аксесуарів з <span class="highlight-text">ціннісним драйвером</span> (еко,
-                            дизайнерські доповнення).</li>
+                        <li>Базові моделі **без естетики** (стандартні спонжі/пензлики).</li>
+                        <li>Відсутність аксесуарів з **ціннісним драйвером** (еко, дизайнерські доповнення).</li>
                         <li>Пензлики з яскраво-рожевими синтетичними ворсами та блискітками.</li>
-                        <li><span class="highlight-text">Текстуровані губки-яйця</span> (тренд на спаданні).</li>
+                        <li>**Текстуровані губки-яйця** (тренд на спадку).</li>
                     </ul>
                 </div>
-                <div class="glass-card rounded-2xl p-8 hover-lift audit-card-negative">
-                    <div class="mb-6 text-3xl font-display font-bold audit-negative">❌ Головні Пробіли</div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="mb-4 text-3xl font-bold" style="color: #FF6B6B;">❌ Головні Пробіли</div>
                     <ul class="text-left list-disc list-inside text-gray-700 space-y-2">
-                        <li>Аксесуари для <span class="highlight-text">догляду</span> (Гуаша, айс-ролери).</li>
-                        <li>Аксесуари з <span class="highlight-text">технологією</span> (автоматичний очищувач,
-                            масажери).</li>
-                        <li><span class="highlight-text">Еко/натуральні матеріали</span> (бамбук, багаторазові товари).
-                        </li>
-                        <li><span class="highlight-text">Органайзери</span> для косметики (лише косметички).</li>
-                        <li>Цілісні <span class="highlight-text">дорожні рішення</span>.</li>
+                        <li>Аксесуари для **догляду** (Гуаша, айс-ролери).</li>
+                        <li>Аксесуари з **технологією** (автоматичний очищувач, масажери).</li>
+                        <li>**Еко/натуральні матеріали** (бамбук, багаторазові товари).</li>
+                        <li>**Органайзери** для косметики (лише косметички).</li>
+                        <li>Цілісні **дорожні рішення**.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section id="profit_mix" class="mb-20 animate-fade-in">
-            <h2 class="section-title text-center gradient-text">
-                5. Очікувана Прибутковість Категорії (%)
-            </h2>
-            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto text-lg leading-relaxed">
-                Цільова структура прибутків. Основний драйвер — <span class="highlight-text">Нове Ядро</span>, яке
-                завдяки вищій маржі та трендовості
-                має генерувати половину прибутків категорії.
-            </p>
-            <div class="glass-card rounded-2xl p-8 hover-lift">
+        <section id="profit_mix" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2" style="color: #073B4C;">5. Очікувана Прибутковість Категорії
+                (%)</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Цільова структура прибутків. Основний драйвер —
+                **Нове Ядро**, яке завдяки вищій маржі та трендовості має генерувати половину прибутків категорії.</p>
+            <div class="bg-white rounded-lg shadow-lg p-6">
                 <div class="chart-container w-full max-w-4xl mx-auto" style="height: 300px; max-height: 400px;">
                     <canvas id="profitMixChart"></canvas>
                 </div>
             </div>
         </section>
 
-        <section id="competitors" class="mb-16 animate-fade-in">
-            <h2 class="section-title text-center gradient-text">
-                6. Конкурентний Ландшафт та Ніша Pinky
-            </h2>
-            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto text-lg leading-relaxed">
-                Pinky має унікальну можливість зайняти нішу "Стильного Бутіка" за рахунок фокусу на естетиці та
-                інноваціях, чого бракує мас-маркет конкурентам.
-            </p>
-            <div class="glass-card rounded-2xl p-8 hover-lift">
+        <section id="competitors" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-2" style="color: #118AB2;">6. Конкурентний Ландшафт та Ніша
+                Pinky</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">Pinky має унікальну можливість зайняти нішу
+                "Стильного Бутіка" за рахунок фокусу на естетиці та інноваціях, чого бракує мас-маркет конкурентам.</p>
+            <div class="bg-white rounded-lg shadow-lg p-6">
                 <div class="chart-container">
                     <canvas id="competitorsChart"></canvas>
                 </div>
             </div>
-            <div class="mt-12 glass-card rounded-2xl p-8 hover-lift">
-                <h4 class="font-display font-bold text-2xl mb-4 gradient-text">🏆 Висновок: Стратегічна Ніша</h4>
-                <p class="text-lg leading-relaxed text-gray-700">Сила Pinky — у <span class="highlight-text">модному
-                        позиціюванні</span>. Потрібно
-                    заповнити прогалину <span class="highlight-text">стильних, дизайнерських, віральних
-                        аксесуарів</span> під власним брендом. Ці
-                    продукти мають бути не лише інструментом, а й <span class="highlight-text">модним акцентом</span>,
-                    що дозволить виділитися серед
-                    мас-маркет гігантів.</p>
+            <div class="mt-10 bg-blue-50 border-l-4 border-blue-500 text-blue-900 p-6 rounded-lg shadow-md">
+                <h4 class="font-bold text-lg mb-2">🏆 Висновок: Стратегічна Ніша</h4>
+                <p>Сила Pinky — у **модному позиціюванні**. Потрібно заповнити прогалину **стильних, дизайнерських,
+                    віральних аксесуарів** під власним брендом. Ці продукти мають бути не лише інструментом, а й
+                    **модним акцентом**, що дозволить виділитися серед мас-маркет гігантів.</p>
             </div>
         </section>
 
     </main>
 
-    <footer class="glass-card mt-16 py-8">
-        <div class="container mx-auto text-center">
-            <p class="text-gray-600 font-medium">&copy; 2025 Pinky. Стратегічний аналіз та дорожня карта.</p>
+    <footer class="bg-white mt-16 py-6 border-t">
+        <div class="container mx-auto text-center text-gray-500">
+            <p>&copy; 2025 Pinky. Стратегічний аналіз та дорожня карта.</p>
         </div>
     </footer>
 
@@ -1576,73 +377,21 @@
             }
         };
 
-        // 1. Enhanced Trends Chart
+        // 1. Trends Chart
         const trendsCtx = document.getElementById('trendsChart').getContext('2d');
         new Chart(trendsCtx, {
             type: 'doughnut',
             data: {
-                labels: ['Під догляд/Рутина', 'Естетика та Текстура', 'Tech-Beauty', 'Еко-Матеріали', 'Міні/Мультифункціональні'],
+                labels: ['Під догляд/Рутина (Tech/Cryo)', 'Естетика та Текстура', 'Tech-Beauty та Гаджети', 'Еко-Матеріали та Сталий Дизайн', 'Міні/Мультифункціональні'].map(wrapLabel),
                 datasets: [{
-                    label: 'Комерційний Потенціал (%)',
+                    label: 'Комерційний Потенціал',
                     data: [30, 15, 15, 15, 25],
-                    backgroundColor: [
-                        '#FF1744',
-                        '#FFD166',
-                        '#118AB2',
-                        '#06D6A0',
-                        '#073B4C'
-                    ],
+                    backgroundColor: [palette.red, palette.yellow, palette.blue, palette.green, palette.navy],
                     borderColor: '#ffffff',
-                    borderWidth: 3,
-                    hoverBorderWidth: 4,
-                    hoverBorderColor: '#FF1744'
+                    borderWidth: 2
                 }]
             },
-            options: {
-                ...chartOptionsBase,
-                plugins: {
-                    ...chartOptionsBase.plugins,
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            usePointStyle: true,
-                            pointStyle: 'circle',
-                            padding: 20,
-                            font: {
-                                size: 14,
-                                weight: '600',
-                                family: 'Inter'
-                            },
-                            color: '#374151'
-                        }
-                    },
-                    tooltip: {
-                        ...chartOptionsBase.plugins.tooltip,
-                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                        titleColor: '#FF1744',
-                        bodyColor: '#374151',
-                        borderColor: '#FF1744',
-                        borderWidth: 2,
-                        cornerRadius: 12,
-                        displayColors: true,
-                        callbacks: {
-                            ...chartOptionsBase.plugins.tooltip.callbacks,
-                            label: function (context) {
-                                return context.label + ': ' + context.parsed + '%';
-                            }
-                        }
-                    }
-                },
-                elements: {
-                    arc: {
-                        borderWidth: 3,
-                        hoverBorderWidth: 5
-                    }
-                },
-                animation: {
-                    animateRotate: true,
-                }
-            }
+            options: chartOptionsBase
         });
 
         // 3. Sales Projection Chart (Updated for new TOP-5 focus drivers)
@@ -1785,52 +534,6 @@
                         suggestedMax: 10
                     }
                 },
-            }
-        });
-
-        // Функціональність перемикання тем
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-        const sunIcon = document.querySelector('.sun-icon');
-        const moonIcon = document.querySelector('.moon-icon');
-
-        // Перевіряємо збережену тему або системну
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-            body.classList.add('dark-theme');
-            sunIcon.classList.add('hidden');
-            moonIcon.classList.remove('hidden');
-        }
-
-        // Обробник кліку на кнопку перемикання
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-theme');
-
-            if (body.classList.contains('dark-theme')) {
-                localStorage.setItem('theme', 'dark');
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
-            } else {
-                localStorage.setItem('theme', 'light');
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-            }
-        });
-
-        // Відстежуємо зміни системної теми
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            if (!localStorage.getItem('theme')) {
-                if (e.matches) {
-                    body.classList.add('dark-theme');
-                    sunIcon.classList.add('hidden');
-                    moonIcon.classList.remove('hidden');
-                } else {
-                    body.classList.remove('dark-theme');
-                    sunIcon.classList.remove('hidden');
-                    moonIcon.classList.add('hidden');
-                }
             }
         });
     </script>
