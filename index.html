@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinky: Стратегія Розвитку Косметичних Аксесуарів 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f4f8;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        .card-glow {
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.5), 0 0 5px rgba(255, 107, 107, 0.3);
+            border-color: #FF6B6B;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold" style="color: #FF6B6B;">Pinky</h1>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#trends" class="text-gray-600 hover:text-[#FF6B6B] transition">Тренди</a>
+                <a href="#proposals" class="text-gray-600 hover:text-[#FF6B6B] transition">Пропозиції</a>
+                <a href="#analysis" class="text-gray-600 hover:text-[#FF6B6B] transition">Аналіз Сайту</a>
+                <a href="#competitors" class="text-gray-600 hover:text-[#FF6B6B] transition">Конкуренти</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4" style="color: #073B4C;">Новий погляд на аксесуари</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Аналіз ринку та стратегічні рекомендації для розвитку
+                категорії косметичних аксесуарів бренду Pinky у 2025 році.</p>
+        </section>
+
+        <section id="trends" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-2" style="color: #118AB2;">Пульс Краси: Глобальні та Українські
+                Тренди 2025</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Ринок аксесуарів розвивається. Ключові напрямки,
+                що визначають попит, — це технологічність, екологічність, гігієна та багатофункціональність. Споживачі
+                шукають не просто інструменти, а комплексні рішення для догляду.</p>
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="chart-container">
+                    <canvas id="trendsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="proposals" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-2" style="color: #118AB2;">Кураторство Майбутнього: Нові
+                Позиції для Pinky</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Ми пропонуємо 7 товарних позицій, які
+                відповідають актуальним трендам, мають високий попит та візуальну привабливість, що пасуватиме стилю
+                Pinky.</p>
+
+            <div class="text-center mb-12">
+                <h3 class="text-2xl font-semibold" style="color: #06D6A0;">ТОП-3 для першочергового запуску:</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="bg-white rounded-lg shadow-lg p-6 border-2 card-glow transition-transform transform hover:scale-105">
+                    <img src="https://placehold.co/600x400/FFD166/073B4C?text=LED+Маска" alt="LED Маска для обличчя"
+                        class="rounded-md mb-4 w-full h-48 object-cover">
+                    <h4 class="text-xl font-bold mb-2">1. LED-маска для обличчя</h4>
+                    <p class="text-gray-600"><strong>Чому?</strong> Тренд на "tech-beauty" та домашні салонні процедури.
+                        Високий попит на гаджети для догляду. Це statement-продукт, що підвищує престиж бренду.</p>
+                </div>
+
+                <div
+                    class="bg-white rounded-lg shadow-lg p-6 border-2 card-glow transition-transform transform hover:scale-105">
+                    <img src="https://placehold.co/600x400/06D6A0/073B4C?text=Щітка+Гуаша"
+                        alt="Силіконова щітка-шкребок Гуаша" class="rounded-md mb-4 w-full h-48 object-cover">
+                    <h4 class="text-xl font-bold mb-2">2. Силіконова щітка-шкребок Гуаша</h4>
+                    <p class="text-gray-600"><strong>Чому?</strong> Поєднання двох трендів: масаж гуаша та глибоке
+                        очищення. Силікон — гігієнічний та довговічний матеріал. Практичний та візуально привабливий
+                        аксесуар.</p>
+                </div>
+
+                <div
+                    class="bg-white rounded-lg shadow-lg p-6 border-2 card-glow transition-transform transform hover:scale-105">
+                    <img src="https://placehold.co/600x400/118AB2/FFFFFF?text=Органайзер"
+                        alt="Багаторазові пади для демакіяжу" class="rounded-md mb-4 w-full h-48 object-cover">
+                    <h4 class="text-xl font-bold mb-2">3. Модульний тревел-органайзер</h4>
+                    <p class="text-gray-600"><strong>Чому?</strong> Високий попит на практичні рішення для подорожей та
+                        зберігання. Модульність дозволяє клієнту кастомізувати продукт. Підтримує тренд на порядок та
+                        естетичне зберігання.</p>
+                </div>
+            </div>
+
+            <hr class="my-12 border-gray-200">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <img src="https://placehold.co/400x300/FF6B6B/FFFFFF?text=Пади"
+                        alt="Багаторазові пади для демакіяжу" class="rounded-md mb-4 w-full h-40 object-cover">
+                    <h4 class="text-lg font-bold mb-2">4. Багаторазові пади</h4>
+                    <p class="text-sm text-gray-600"><strong>Чому?</strong> Еко-тренд та свідоме споживання. Практична
+                        та економічна альтернатива ватним дискам. Поставляються в стильному мішечку для прання.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <img src="https://placehold.co/400x300/FFD166/073B4C?text=Ice+Roller" alt="Роллер для льоду"
+                        class="rounded-md mb-4 w-full h-40 object-cover">
+                    <h4 class="text-lg font-bold mb-2">5. Роллер для льоду</h4>
+                    <p class="text-sm text-gray-600"><strong>Чому?</strong> Популярність кріотерапії в домашніх умовах.
+                        Знімає набряки, тонізує шкіру. Вірусний продукт у TikTok та Instagram.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <img src="https://placehold.co/400x300/06D6A0/073B4C?text=Санітайзер" alt="Санітайзер для пензлів"
+                        class="rounded-md mb-4 w-full h-40 object-cover">
+                    <h4 class="text-lg font-bold mb-2">6. УФ-санітайзер для пензлів</h4>
+                    <p class="text-sm text-gray-600"><strong>Чому?</strong> Підвищена увага до гігієни. Інноваційний
+                        гаджет, що вирішує реальну проблему чистоти інструментів. Приваблює технологічно орієнтовану
+                        аудиторію.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <img src="https://placehold.co/400x300/118AB2/FFFFFF?text=Термо-бігуді" alt="Шовкові термо-бігуді"
+                        class="rounded-md mb-4 w-full h-40 object-cover">
+                    <h4 class="text-lg font-bold mb-2">7. Шовкові термо-бігуді</h4>
+                    <p class="text-sm text-gray-600"><strong>Чому?</strong> Тренд на "heatless curls" (локони без
+                        нагрівання). Дбайливе ставлення до волосся. Дуже естетичний та "інстаграмний" продукт.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="analysis" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-2" style="color: #118AB2;">Поточна полиця Pinky: Аналіз
+                Категорії</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Оцінка поточного асортименту аксесуарів на сайті
+                Pinky виявила як сильні сторони, так і зони для росту та оновлення.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="mb-4 text-3xl font-bold" style="color: #06D6A0;">👍 Вдало та достатньо</div>
+                    <ul class="text-left list-disc list-inside text-gray-700 space-y-2">
+                        <li>Базові пензлі для макіяжу</li>
+                        <li>Спонжі та б'юті-блендери</li>
+                        <li>Косметички базових розмірів</li>
+                        <li>Дзеркальця</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="mb-4 text-3xl font-bold" style="color: #FFD166;">🤔 Потребує оновлення</div>
+                    <ul class="text-left list-disc list-inside text-gray-700 space-y-2">
+                        <li>Застарілі моделі масажерів (нефрит)</li>
+                        <li>Пінцети та ножиці (дизайн)</li>
+                        <li>Силіконові щіточки (старі моделі)</li>
+                        <li>Одноманітні набори пензлів</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="mb-4 text-3xl font-bold" style="color: #FF6B6B;">❌ Чого бракує</div>
+                    <ul class="text-left list-disc list-inside text-gray-700 space-y-2">
+                        <li>Б'юті-гаджетів (LED, УФ)</li>
+                        <li>Еко-товарів (багаторазові пади)</li>
+                        <li>Інструментів для волосся</li>
+                        <li>Органайзерів для подорожей</li>
+                        <li>Вузькоспеціалізованих інструментів</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="competitors" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-2" style="color: #118AB2;">Конкурентний Ландшафт</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">Порівняння з ключовими онлайн-гравцями (умовні
+                "Lila Beauty" та "Eva Store") показує позиціонування Pinky на ринку та потенційні переваги.</p>
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="chart-container">
+                    <canvas id="competitorsChart"></canvas>
+                </div>
+            </div>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="font-bold text-lg mb-2">Сильні сторони конкурентів:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li><span class="font-semibold">Lila Beauty:</span> Широкий вибір б'юті-гаджетів, активно
+                            просувають інновації.</li>
+                        <li><span class="font-semibold">Eva Store:</span> Дуже широкий базовий асортимент, доступні
+                            ціни, є еко-лінійки.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h4 class="font-bold text-lg mb-2">Слабкі сторони конкурентів:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li><span class="font-semibold">Lila Beauty:</span> Високий ціновий сегмент, менше базових
+                            аксесуарів.</li>
+                        <li><span class="font-semibold">Eva Store:</span> Часто застарілий дизайн, бракує ексклюзивних
+                            та трендових позицій.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 bg-blue-100 border-l-4 border-blue-500 text-blue-800 p-4 rounded-md shadow-md">
+                <h4 class="font-bold text-lg mb-2">Можливість для Pinky:</h4>
+                <p>Зайняти нішу між мас-маркетом та преміум-гаджетами. Запропонувати стильні, трендові та функціональні
+                    аксесуари за середньою ціною, поєднуючи якісний базовий асортимент з інноваційними новинками.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white mt-16 py-6 border-t">
+        <div class="container mx-auto text-center text-gray-500">
+            <p>&copy; 2025 Pinky. Стратегічний аналіз.</p>
+        </div>
+    </footer>
+
+    <script>
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine);
+            }
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const palette = {
+            red: '#FF6B6B',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            blue: '#118AB2',
+            navy: '#073B4C'
+        };
+
+        const trendsCtx = document.getElementById('trendsChart').getContext('2d');
+        const trendsData = {
+            labels: ['Гігієна та безпека', 'Багатофункціональні інструменти', 'Еко-свідомість та сталість', 'Б\'юті-гаджети та технології'].map(wrapLabel),
+            datasets: [{
+                label: 'Рівень впливу на ринок',
+                data: [75, 80, 85, 95],
+                backgroundColor: [palette.blue, palette.green, palette.yellow, palette.red],
+                borderColor: 'rgba(255, 255, 255, 0)',
+                borderWidth: 1,
+                borderRadius: 5
+            }]
+        };
+        new Chart(trendsCtx, {
+            type: 'bar',
+            data: trendsData,
+            options: {
+                indexAxis: 'y',
+                maintainAspectRatio: false,
+                responsive: true,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const competitorsCtx = document.getElementById('competitorsChart').getContext('2d');
+        const competitorsData = {
+            labels: ['Асортимент', 'Інновації', 'Ціна', 'Дизайн', 'Еко-френдлі'],
+            datasets: [{
+                label: 'Pinky',
+                data: [6, 5, 8, 7, 4],
+                backgroundColor: 'rgba(255, 107, 107, 0.2)',
+                borderColor: palette.red,
+                pointBackgroundColor: palette.red,
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: palette.red
+            }, {
+                label: 'Lila Beauty (Конкурент 1)',
+                data: [8, 9, 5, 8, 7],
+                backgroundColor: 'rgba(17, 138, 178, 0.2)',
+                borderColor: palette.blue,
+                pointBackgroundColor: palette.blue,
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: palette.blue
+            },
+            {
+                label: 'Eva Store (Конкурент 2)',
+                data: [9, 3, 9, 4, 6],
+                backgroundColor: 'rgba(255, 209, 102, 0.2)',
+                borderColor: palette.yellow,
+                pointBackgroundColor: palette.yellow,
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: palette.yellow
+            }]
+        };
+        new Chart(competitorsCtx, {
+            type: 'radar',
+            data: competitorsData,
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                elements: {
+                    line: {
+                        borderWidth: 3
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: '#e2e8f0'
+                        },
+                        grid: {
+                            color: '#e2e8f0'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 14
+                            },
+                            color: palette.navy
+                        },
+                        ticks: {
+                            display: false,
+                            stepSize: 2
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
